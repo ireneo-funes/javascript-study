@@ -1,0 +1,79 @@
+<html>
+<head>
+  <title>JavaScript Study</title>
+  <style type="text/css">
+    .test button {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 0;
+      outline: none;
+      transition: 1s;
+    }
+    .red {
+      background: red;
+    }
+    .green {
+      background: green;
+    }
+    .yellow {
+      background: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="test">
+    <button class='red'></button>
+    <button class='green'></button>
+    <button class='yellow'></button>
+  </div>
+  <script>
+    function repaintRedButton() {
+      var target = document.querySelector('.red');
+      var player = target.animate([
+        {background: 'red'}, {background: 'purple'}
+      ], {duration: 500});
+      player.addEventListener('finish', function() {
+        target.style.backgroundColor = 'purple';
+      });
+    }
+
+    function expandGreenButton() {
+      var target = document.querySelector('.green');
+      var player = target.animate({
+        transform: ['scale(1)', 'scale(2)']
+      }, 500);
+      player.addEventListener('finish', function() {
+        target.style.transform = 'scale(2)';
+      });
+    }
+
+    function pushRightYellowButton() {
+      var target = document.querySelector('.yellow');
+      var player = target.animate([
+        {transform: 'translate(0px, 0px)'},
+        {transform: 'translate(100px, 0px)'}
+      ], 500);
+      player.addEventListener('finish', function() {
+        target.style.transform = 'translate(100px, 0px)';
+      });
+    }
+
+    var redButton = document.querySelector('.red');
+    redButton.addEventListener('click', function() {
+      repaintRedButton()
+    });
+
+    var greenButton = document.querySelector('.green');
+    greenButton.addEventListener('click', function() {
+      expandGreenButton()
+    });
+
+    var yellowButton = document.querySelector('.yellow');
+    yellowButton.addEventListener('click', function() {
+      pushRightYellowButton()
+    });
+</script>
+</body>
+</html>
