@@ -1,7 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>JavaScript Study</title>
-  <style type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+  <style>
+    .explanation {
+      width: 100%;
+      margin-bottom: 50px;
+      font-family: 'Dosis', sans-serif;
+    }
     .test button {
       display: inline-block;
       width: 100px;
@@ -23,6 +31,13 @@
   </style>
 </head>
 <body>
+  <div class="explanation">
+    <ol>
+      <li>Click the red button to paint it purple.</li>
+      <li>Click the green button to double the size.</li>
+      <li>Click the yellow button to push it to the right.</li>
+    </ol>
+  </div>
   <div class="test">
     <button class='red'></button>
     <button class='green'></button>
@@ -53,10 +68,10 @@
       var target = document.querySelector('.yellow');
       var player = target.animate([
         {transform: 'translate(0px, 0px)'},
-        {transform: 'translate(100px, 0px)'}
+        {transform: 'translate(200px, 0px)'}
       ], 500);
       player.addEventListener('finish', function() {
-        target.style.transform = 'translate(100px, 0px)';
+        target.style.transform = 'translate(200px, 0px)';
       });
     }
 
