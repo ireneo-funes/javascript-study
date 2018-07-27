@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Study</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+    }
+
+    .out-of-stock {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Filter elements by class values</h1>
+  <!-- Input comes here -->
+  <p>
+    <b>Input:</b>
+    Out-of-stock items are written in red.
+  </p>
+  <div id="input">
+  <ul>
+    <li class="out-of-stock">Bugatti Veyron</li>
+    <li class="out-of-stock">Bentley Continental GT Speed Coupé </li>
+    <li class="in-stock">Lamborghini Huracán</li>
+    <li class="out-of-stock">Mercedes-Maybach S600</li>
+  </ul> 
+  </div>
+
+  <!-- Output goes here -->
+  <p>
+    <b>Output:</b>
+    This is the list of out-of-stock items.
+  </p>
+  <div id="output">
+  </div>
+
+  <script>
+  document.body.onload = processInput;
+
+  function processInput () { 
+    // find the target elements
+    var outputDiv = document.getElementById("output");
+
+    // create a new unordered list 
+    var newList = document.createElement("ul");
+
+    // populate the new list by going over items with 'out-of-stock' class 
+    var entries = document.querySelectorAll(".out-of-stock");
+    for (var i = 0; i < entries.length; i++) {
+      var tempItem = document.createElement("li")
+      tempItem.innerHTML = entries[i].innerHTML;
+      newList.appendChild(tempItem)
+    }
+
+    // append it to the output div
+    outputDiv.appendChild(newList)
+  }
+  </script>
+</body>
+</html>
