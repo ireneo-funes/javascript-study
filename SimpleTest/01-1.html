@@ -38,30 +38,36 @@
 </div>
 
 <script>
-  function DOMExplorer(rootID, matchHandler) {
+  function DOMExplorer(rootID, containTarget) {
     var rootDOM = document.getElementById(rootID);
     var result = [];
 
-    // Go over all the elements under the root element
-    var list = rootDOM.getElementsByTagName("*")
+    // Run iterative-DFS to visit all the descendants of the root DOM
+    // Refer to https://en.wikipedia.org/wiki/Depth-first_search#Pseudocode
+    var stack = [];
+    stack.push(rootDOM);
 
-    for (var i=0; i < list.length; i++) {
-      if (matchHandler(list[i]) === true) {
-        result.push(list[i].outerHTML)
+    while (stack.length > 0) {
+      const curr = stack.pop();
+      // mark the current element if it has the desired class
+      if (containTarget(curr)) {
+        result.push(curr.outerHTML);
+      }
+      // take care of the children of the current element
+      for (var i = 0; i < curr.childNodes.length; i++) {
+        stack.push(curr.childNodes[i]);
       }
     }
 
-	  return result;
+    return result;
   }
 
-  const result = DOMExplorer('root', currentElement => {
+  console.log(DOMExplorer('root', currentElement => {
   	if (currentElement.className === 'target')
       return true;
     else
       return false;
-  });
-
-  console.log(result);
+  }));
 </script>
 </body>
 </html>
