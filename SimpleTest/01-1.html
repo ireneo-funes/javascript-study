@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Study</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+    }
+
+    .target {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+<div id='root'>
+	<div>Child</div>
+	<p class='target'>Child</p>
+	<section>
+		<input />
+		<img src='error' class='target' />
+		<code>/** TEST */</code>
+	</section>
+	<article>
+		<div>123</div>
+		<div>
+			456
+			<input type='password' class='target' />
+			<a>
+				<span>Deep</span>
+			</a>
+		</div>
+		<div>789</div>
+	</article>
+</div>
+
+<script>
+  function DOMExplorer(rootID, matchHandler) {
+    var rootDOM = document.getElementById(rootID);
+    var result = [];
+
+    // Go over all the elements under the root element
+    var list = rootDOM.getElementsByTagName("*")
+
+    for (var i=0; i < list.length; i++) {
+      if (matchHandler(list[i]) === true) {
+        result.push(list[i].outerHTML)
+      }
+    }
+
+	  return result;
+  }
+
+  const result = DOMExplorer('root', currentElement => {
+  	if (currentElement.className === 'target')
+      return true;
+    else
+      return false;
+  });
+
+  console.log(result);
+</script>
+</body>
+</html>
